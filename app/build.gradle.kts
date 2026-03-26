@@ -1,6 +1,16 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+}
+
+val signingPropertiesFile = rootProject.file("signing.properties")
+val signingProperties = Properties()
+val hasLocalSigning = signingPropertiesFile.exists()
+
+if (hasLocalSigning) {
+    signingPropertiesFile.inputStream().use(signingProperties::load)
 }
 
 android {
@@ -17,13 +27,33 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (hasLocalSigning) {
+            create("platform") {
+                // 签名信息只从本地文件读取，避免把系统签名相关信息提交到仓库。
+                storeFile = rootProject.file(signingProperties.getProperty("storeFile"))
+                storePassword = signingProperties.getProperty("storePassword")
+                keyAlias = signingProperties.getProperty("keyAlias")
+                keyPassword = signingProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
+        debug {
+            if (hasLocalSigning) {
+                signingConfig = signingConfigs.getByName("platform")
+            }
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (hasLocalSigning) {
+                signingConfig = signingConfigs.getByName("platform")
+            }
         }
     }
     compileOptions {
