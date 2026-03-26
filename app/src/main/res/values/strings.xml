@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Content SDK Demo</string>
+    <string name="demo_title">Content SDK 使用示例</string>
+    <string name="demo_subtitle">演示 app 模块如何与 Content Center 建立连接、收发消息以及管理文件。</string>
+    <string name="demo_status_waiting">等待初始化</string>
+    <string name="demo_status_connecting">正在连接 Content Center…</string>
+    <string name="demo_status_connected">AIDL 已连接</string>
+    <string name="demo_status_disconnected">AIDL 未连接</string>
+    <string name="demo_step_hint">页面启动后会自动调用 init() 并注册监听，下面的按钮对应 README 里的常见 API。</string>
+    <string name="demo_section_actions">常用操作</string>
+    <string name="demo_section_logs">消息日志</string>
+    <string name="action_reconnect">重新初始化</string>
+    <string name="action_release">释放连接</string>
+    <string name="action_reload">拉取配置</string>
+    <string name="action_push_config">发送示例配置</string>
+    <string name="action_view_files">查看远端文件</string>
+    <string name="action_upload_file">上传示例文件</string>
+    <string name="action_download_first">下载首个文件</string>
+    <string name="action_device_info">获取设备信息</string>
+    <string name="demo_logs_empty">等待 SDK 消息…</string>
+</resources>
