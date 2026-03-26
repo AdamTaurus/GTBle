@@ -53,7 +53,8 @@ keyPassword=你的 keyPassword
 
 ### 通过 GitHub + JitPack 直接依赖
 
-仓库已经配置好 `maven-publish` 与 `jitpack.yml`，推送到 GitHub 并打版本 tag 后，可以直接使用：
+仓库已经配置好 `maven-publish` 与 `jitpack.yml`，推送到 GitHub 并打版本 tag 后，可以直接使用。
+当前仓库只有一个实际对外发布的 library，`app` 只是 demo，所以 JitPack 生成的是仓库级快捷坐标：
 
 1. 在宿主工程的 `settings.gradle.kts` 或根 `build.gradle` 中加入 JitPack 仓库：
 
@@ -71,11 +72,11 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.AdamTaurus.GTBle:content_sdk:1.0.1")
+    implementation("com.github.AdamTaurus:GTBle:1.0.2")
 }
 ```
 
-其中 `1.0.1` 需要替换成实际推送到 GitHub 的 tag 名。
+其中 `1.0.2` 需要替换成实际推送到 GitHub 的 tag 名；如果后续仓库里增加多个对外发布的 library，再按实际模块坐标拆分即可。
 
 ### 同仓库模块依赖
 
